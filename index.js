@@ -15,6 +15,7 @@ const path = require('path');
 app.use(cors());
 app.use(express.json());
 
+
 // ------------------------Registration Api-----------------------------
 
 // ---------------------------validation Api-------------------------
