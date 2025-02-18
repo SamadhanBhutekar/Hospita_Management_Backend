@@ -5,6 +5,7 @@ const Package_ResChargesSchema =require('./config/Package_ReservationCharges');
 const Payment_Settelment = require('./config/Package_Settelment');
 const Package_modicationSchema = require('./config/Package_Modification');
 const Login_Schema = require ('./config/Login')
+console.log("Users in DB:", Login_Schema);
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -14,7 +15,7 @@ const path = require('path');
 
 app.use(cors());
 app.use(express.json());
-
+const PORT = 4000;
 
 // ------------------------Registration Api-----------------------------
 
@@ -544,6 +545,7 @@ app.put("/package_status/:patientid", async (req, resp) => {
 app.post("/login", async (req, resp) => {
   try {
     const { username, password } = req.body;
+    
     const user = await Login_Schema.findOne({ username, password });
     if (user) {
       return resp.json({ success: true, message: "Login successful", user });
@@ -567,6 +569,6 @@ app.get("/search_registration/:id", async (req, resp) => {
 });
 
 
-app.listen(4000, '0.0.0.0', () => {
-  console.log('Server running on port 4000');
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
