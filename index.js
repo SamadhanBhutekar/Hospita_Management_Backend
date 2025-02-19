@@ -5,7 +5,6 @@ const Package_ResChargesSchema =require('./config/Package_ReservationCharges');
 const Payment_Settelment = require('./config/Package_Settelment');
 const Package_modicationSchema = require('./config/Package_Modification');
 const Login_Schema = require ('./config/Login')
-console.log("Users in DB:", Login_Schema);
 const express = require('express');
 const app = express();
 const cors = require('cors');
