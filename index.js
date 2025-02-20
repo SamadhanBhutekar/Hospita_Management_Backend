@@ -547,31 +547,11 @@ app.put("/package_status/:patientid", async (req, resp) => {
   resp.send(result);
 });
 
-// app.post("/login", async (req, resp) => {
-//   try {
-//     const { username, password } = req.body;
-    
-//     const user = await Login_Schema.findOne({ username, password });
-//     if (user) {
-//       return resp.json({ success: true, message: "Login successful", user });
-//     } else {
-//       return resp.status(401).json({ error: "Invalid credentials" });
-//     }
-//   } catch (error) {
-//     console.error("Server Error:", error);
-//     resp.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-
 app.post("/login", async (req, resp) => {
   try {
     const { username, password } = req.body;
-    console.log("Received login request:", username, password);
-
-    const user = await Login_Schema.findOne({ username });
-    console.log("User found:", user);
-
+    
+    const user = await Login_Schema.findOne({ username, password });
     if (user) {
       return resp.json({ success: true, message: "Login successful", user });
     } else {
@@ -579,7 +559,7 @@ app.post("/login", async (req, resp) => {
     }
   } catch (error) {
     console.error("Server Error:", error);
-    return resp.status(500).json({ error: "Internal Server Error" });
+    resp.status(500).json({ error: "Internal Server Error" });
   }
 });
 
