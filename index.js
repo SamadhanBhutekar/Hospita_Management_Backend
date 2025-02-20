@@ -567,7 +567,10 @@ app.put("/package_status/:patientid", async (req, resp) => {
 app.post("/login", async (req, resp) => {
   try {
     const { username, password } = req.body;
-    const user = await Login_Schema.findOne({ username, password });
+    console.log("Received login request:", username, password);
+
+    const user = await Login_Schema.findOne({ username });
+    console.log("User found:", user);
 
     if (user) {
       return resp.json({ success: true, message: "Login successful", user });
